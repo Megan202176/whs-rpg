@@ -1,9 +1,36 @@
-let xp = 0;
-let health = 100;
-let gold = 50;
+// Player class to encapsulate player state
+class Player {
+  constructor() {
+    this.xp = 0;
+    this.gold = 50;
+    this.health = 100;
+    this.charName = prompt("Enter your character name:");
+    let img = prompt("Enter your character image URL (http(s)://...):");
+    while (img && !isValidUrl(img)) {
+      img = prompt("That's not a valid URL. Please enter a valid image URL (http(s)://...):");
+    }
+    this.image = img || "https://site.com/image.jpg";
+  }
+}
+
+function isValidUrl(str) {
+  try {
+    const url = new URL(str);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (e) {
+    return false;
+  }
+}
+
+
+const player = new Player();
+
+let xp = player.xp;
+let health = player.health;
+let gold = player.gold;
 let currentWeapon = 0;
 let fighting;
-let monterHealth;
+let monsterHealth;
 let inventory = ["stick"];
 
 let objects = ["orb", "key", "skull"]
