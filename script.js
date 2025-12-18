@@ -23,7 +23,7 @@ let inventory = ["stick"];
 let objects = ["orb", "key", "skull"]
 
 const controls = document.getElementById("controls");
-const button1 = document.querySelector("#controls :nth-child(1)");
+const button1 = document.querySelector("#controls :nth-child(2)");
 button1.style.backgroundColor = "yellow";
 const container = document.querySelector('.container:nth-child(2)');
 // const button1 = document.querySelector("#button1");
@@ -39,6 +39,11 @@ const monsterHealthText = document.querySelector("#monsterHealth");
 const myObjects = document.querySelector("#stats li:nth-child(4)"); 
 const myWeapons = document.querySelector("#stats li:nth-child(5)");
 const stats = document.querySelector("#stats li:nth-child(5)");
+
+function showName(){
+	document.getElementById("playerName").innerHTML=player.charName;
+	document.getElementById("picture").innerHTML="<img src=\""+ player.image+"\">";
+}
 
 function showObjects() {
 	showInventory(myObjects, objects, "objects")
