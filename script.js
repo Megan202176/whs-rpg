@@ -5,25 +5,51 @@ class Player {
     this.gold = 50;
     this.health = 100;
     this.charName = prompt("Enter your character name:");
-    let img = prompt("Enter your character image URL (http(s)://...):");
-    while (img && !isValidUrl(img)) {
-      img = prompt("That's not a valid URL. Please enter a valid image URL (http(s)://...):");
-    }
-    this.image = img || "https://site.com/image.jpg";
+	// let img = prompt("Enter your character image URL (http(s)://...):");
+    // this.image = img || "https://site.com/image.jpg";
+	let objects = [];
+	objects.push(prompt("New object"));
+	this.objects = objects;
+	let weapons = [0];
+	this.weapons = weapons;
+	this.currentWeapon = 0;
   }
+  	buyWeapon() {
+    if (currentWeapon < weapons.length - 1) {
+    	if (gold >= 30) {
+            gold -= 30;
+            currentWeapon++;
+            goldText.innerText = gold;
+            let newWeapon = weapons[currentWeapon].name;
+    		text.innerText = "You now have a " + newWeapon + ".";
+            inventory.push(newWeapon);
+            text.innerText += " In your inventory you have: " + inventory;
+    	} else {
+    		text.innerText = "You do not have enough gold to buy a weapon.";
+    	} 
+    } else {
+		text.innerText = "You already have the most powerful weapon!";
+        button2.innerText = "Sell weapon for 15 gold";
+		button2.onclick = sellWeapon;
+	}
+  }	
 }
 
 const player = new Player();
+console.log(JSON.stringify(player));
+console.log(player);
 
 let xp = player.xp;
 let health = player.health;
 let gold = player.gold;
+let objects = player.objects;
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
+let weapons = player.weapons;
 
-let objects = ["orb", "key", "skull"]
+let allObjects = ["orb", "key", "skull"]
 
 const controls = document.getElementById("controls");
 const button1 = document.querySelector("#controls :nth-child(1)");
@@ -47,24 +73,25 @@ function showObjects() {
 	showInventory(myObjects, objects, "objects")
 }
 
+function showWeapons() {
+	showInventory(myWeapons, weapons, "weapons")
+}
+
 function showInventory(container, items, listName){
-	console.log(myObjects)
 	let inventoryList = document.createElement("ul");
 	inventoryList.id = listName;
-	myObjects.addEventListener('click', (event) => {
+	container.addEventListener('click', (event) => {
 		inventoryList.style.display = "none";
-		
 	});
 	for (let item = 0; item < items.length; item++){
 		let newItem = document.createElement("li");
 		newItem.innerHTML = items[item];
-		console.log(newItem);
 		inventoryList.appendChild(newItem);
 	}
 	container.appendChild(inventoryList);
 }
 
-const weapons = [
+const allWeapons = [
 	{
 		name: "stick",
 		power: 5
@@ -193,25 +220,7 @@ function buyHealth() {
 
 }
 
-function buyWeapon() {
-    if (currentWeapon < weapons.length - 1) {
-    	if (gold >= 30) {
-            gold -= 30;
-            currentWeapon++;
-            goldText.innerText = gold;
-            let newWeapon = weapons[currentWeapon].name;
-    		text.innerText = "You now have a " + newWeapon + ".";
-            inventory.push(newWeapon);
-            text.innerText += " In your inventory you have: " + inventory;
-    	} else {
-    		text.innerText = "You do not have enough gold to buy a weapon.";
-    	} 
-    } else {
-		text.innerText = "You already have the most powerful weapon!";
-        button2.innerText = "Sell weapon for 15 gold";
-		button2.onclick = sellWeapon;
-	}
-}
+
 
 function sellWeapon() {
 	if (inventory.length > 1) {
