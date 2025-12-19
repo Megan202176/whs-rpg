@@ -8,6 +8,7 @@ class Player {
     let img = prompt("Enter your character image URL (http(s)://...):");
     this.image = img;
 	this.currentWeapon = 0;
+	this.buyWeapon = this.buyWeapon.bind(this); // ← bind once so button knows which player to use
 	this.weapons = [0];
   }
 
