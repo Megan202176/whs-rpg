@@ -2,6 +2,12 @@ body {
   background-color: darkblue;
 }
 
+#picture img{
+  width:100px;
+  border-style:solid;
+  float:left;
+}
+
 #text {
   background-color: black;
   color: white;
@@ -15,6 +21,7 @@ body {
   color: white;
   margin: 0 auto;
   padding: 10px;
+  float:left;
 }
 
 #controls {
