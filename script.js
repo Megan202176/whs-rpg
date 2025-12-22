@@ -78,8 +78,30 @@ function showName(){
 function showWeapons(){
 	console.log(currentWeapon)
 	showInventory(myWeapons, buildWeapons(), "weapons")
-
 }
+
+function showPages(){
+	document.getElementById("main").style.display="none";
+	document.getElementById("admin").style.display="none";
+	document.getElementById("player").style.display="block";
+	
+}
+function showPages(){//working on this//
+	let inventoryList = document.createElement("ul");
+	inventoryList.id = "pages";
+	container.addEventListener('click', (event) => {
+		inventoryList.style.display = "none";
+		
+	});
+	for (let item = 0; item < items.length; item++){
+		let newItem = document.createElement("li");
+		newItem.innerHTML = items[item];
+		console.log(newItem);
+		inventoryList.appendChild(newItem);
+	}
+	container.appendChild(inventoryList);
+}
+
 function showInventory(container, items, listName){
 	console.log(myObjects)
 	let inventoryList = document.createElement("ul");
