@@ -21,7 +21,7 @@ const goShow= document.getElementById("goShow");
 setUp();
 function setUp(){
 	go.id="go";
-	createPlayerPage()
+	
 	showPages();
 }
 function showObjects() {
@@ -50,6 +50,11 @@ function showPages(){
 	go.style.display="none";
 	goShow.addEventListener("click" , showGo);
 }
+function createPlayerPage(){
+	let playerP = document.createElement("p")
+	playerP.innerHTML="Hello"
+	playerPage.appendChild(playerP)
+}
 function goMain(){
 	document.getElementById("main").style.display="block";
 	document.getElementById("admin").style.display="none";
@@ -59,6 +64,7 @@ function goPlayer(){
 	document.getElementById("main").style.display="none";
 	document.getElementById("admin").style.display="none";
 	document.getElementById("player").style.display="block";
+	createPlayerPage()
 }
 function goAdmin(){
 document.getElementById("main").style.display="none";

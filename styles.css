@@ -26,6 +26,7 @@ body {
   margin-right:15px;
   text-align:center;
 }
+
 #game {
   width: 800px;
   max-height: 400px;
@@ -158,4 +159,9 @@ transition: 0.3s;
   left:260px;
   display:none;
   background-color: white;
+}
+#playerPage{
+  background-color:rgb(202, 177, 130);
+  border:3px dashed black;
+  margin-top:20px;
 }
